@@ -38,6 +38,7 @@
           <div class="tracking">{{check.trackingBefore}}</div>
         </div>
       </div>
+      <!-- 结算按钮 -->
       <div class="right" :class="{'highlight': totalCount}">{{checkAll}}</div>
     </div>
   </div>
@@ -57,10 +58,12 @@ export default {
     };
   },
   props: {
+    // 接收父元素传来的数据
     foodlist: {
       type: Array
     }
   },
+  // 注册
   components: {
     cartcontrol: Cartcontrol
   },
@@ -97,14 +100,14 @@ export default {
           this.shopScroll = new BScroll(this.$refs.shopListScroll, {
             click: true
           });
-          this.shopScroll.refresh();
-          console.log(this.shopScroll);
         } else {
           this.shopScroll.refresh();
         }
+        console.log(this.shopScroll);
       });
       return this.isShow;
     },
+    // 计算总的金额
     totalMoney() {
       let total = 0;
       this.foodlist.forEach(val => {
@@ -116,6 +119,7 @@ export default {
       });
       return total;
     },
+    // 添加商品的数量
     totalCount() {
       let num = 0;
       this.foodlist.forEach(val => {
@@ -127,6 +131,7 @@ export default {
       });
       return num;
     },
+    // 判断结算按钮的显示文字
     checkAll() {
       if (this.totalCount) {
         return this.check.checkAfter;
@@ -162,10 +167,10 @@ div.popContainer {
   justify-content: space-between;
   margin: 0;
   padding: 10px 12px;
-  background: #dfdbdb;
-  color: #666666;
-  font: 8px PingFang SC;
-  border-bottom: 0.5px solid #eee;
+   background: -webkit-linear-gradient(top, #eff0f0 0%, #e0dfe0 100%);
+  color:#666;
+  font: 13px  Arial, Helvetica, sans-serif;
+  /* border-bottom: 0.5px solid #eee; */
 }
 /* 列表显示的窗口 */
 .shop-list > .shop-list-wrapper {
@@ -180,16 +185,17 @@ div.popContainer {
 .shop-list-content {
   display: flex;
   justify-content: space-between;
+  background: #F8F8FF;
   padding: 8px 10px;
   line-height: 20px;
-  border-bottom: 0.3px solid #bdc6ce;
+  border-bottom: 0.3px solid #eee;;
 }
 /* 购物车列表的商品文字 */
 /* 内容比较多的用省略号表示 */
 .shop-list-left {
   text-align: left;
   width: 50%;
-  font: 15px PingFang SC;
+  font: 17px  Arial, Helvetica, sans-serif;
   color: #000;
   overflow: hidden;
   -webkit-line-clamp: 1;
@@ -275,7 +281,8 @@ div.popContainer {
   width: 30%;
 }
 .highlight {
-  background: #ffd161;
-  color: #2d2b2a;
+  background: -webkit-linear-gradient(top, #FFC107 0%, #FF9800 100%);
+  color:#666;
+  color: #fff;
 }
 </style>

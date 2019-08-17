@@ -59,7 +59,7 @@ export default {
   font-weight: bold;
 }
 .add{
-  background:#FFC300;;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #FFC107), color-stop(100%, #FF9800));
   color: #000;
 }
 .decrease{
@@ -70,7 +70,7 @@ export default {
 /* 点击添加商品数量时的过渡时间 */
 .roll-enter-active,
 .roll-leave-active {
-  transition: 0.5s all linear;
+  transition: 0.09s all linear;
 }
 /* 点击添加商品数量时的动画*/
 .roll-enter,

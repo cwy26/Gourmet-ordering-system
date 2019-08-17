@@ -32,7 +32,7 @@
             <!-- 菜品 -->
             <div v-for="(menus,i) of menus.data" :key="i" class="menusName">
               <div class="menuImg">
-                <img src="../../assets/hamburger.jpg" alt="图片以损坏" />
+                <img id="img" src="../../assets/hamburger.jpg" alt="图片以损坏" />
               </div>
               <div class="menuContent">
                 <h4>{{menus.name}}</h4>
@@ -117,10 +117,16 @@ export default {
   },
   // dom和数据加载渲染完，初始化左右两边滚动
   mounted(){
-      this.$nextTick(() => {
-      this.getHeight();
-      this.scrollInit();
-    }); 
+   document.getElementById("img").onload=()=> {
+        
+      if(this.searchMenus){
+        console.log(this.searchMenus);
+       this.$nextTick(() => {
+        this.getHeight();
+        this.scrollInit();
+        }); 
+      }
+    }    
   },
   
   methods: {
@@ -136,6 +142,7 @@ export default {
           }
         });
         return num;
+        console.log(num);
       }
     },
     // 计算每个li的高度
@@ -152,6 +159,7 @@ export default {
         height += item.clientHeight;
         this.rightLiTops.push(height);
       }
+      console.log(this.rightLiTops);
     },
     // 初始化左右滚动
     scrollInit() {
@@ -171,6 +179,7 @@ export default {
         // 否则就重新初始化，计算高度
         this.rightBscroll.refresh();
       }
+      console.log(this.rightBscroll);
       this.rightBscroll.on("scroll", pos => {
         //获取实时滚动的距离 使用scrollY接收
         this.scrollY = Math.abs(Math.round(pos.y));
@@ -232,10 +241,10 @@ export default {
 }
 /* 菜单栏 左*/
 .menu-bar {
-  background-color: #f5f5f5;
   width: 20%;
   padding-right: 15px;
-  height: 460px;
+  height: 415px;
+  padding-right: 10px;
 }
 /* 添加的商品数量 */
 .left-red {
@@ -259,11 +268,11 @@ ul {
 .menu-item {
   text-align: center;
   padding: 18px 10px;
-  font-size: 15px;
-  background: #fff;
+  font-size: 10px;
   border-bottom: 0.5px solid #f5f5f5;
   font-weight: bold;
   position: relative;
+  background-color: #f6f6f6;
 }
 /* 菜单的栏的第一个和最后一个种类 */
 .menu-item:first-child {
@@ -276,13 +285,12 @@ ul {
 div > .shop-wrapper {
   overflow: hidden;
   width: 80%;
-  height: 460px;
-  box-sizing: border-box;
+  height: 415px;
+  margin: 0;
 }
-.shop-wrapper > .menusKind {
-  border: 0.5px solid #f5f5f5;
+ .menusKind {
+  border: 0.5px solid #f6f6f6;
   padding: 10px 10px;
-  box-sizing: border-box;
 }
 /* 类标题 */
 .menusKind > h6 {
@@ -291,24 +299,20 @@ div > .shop-wrapper {
   margin: 0 10px;
   text-align: left;
   font-size: 15px;
-  box-sizing: border-box;
 }
 /* 类名 */
 .menusKind > .menusName {
   width: 100%;
   display: flex;
-  box-sizing: border-box;
 }
 /* 菜图片 */
 .menusName > .menuImg {
   width: 40%;
   padding: 5px;
-  box-sizing: border-box;
 }
 .menusName > .menuImg > img {
   width: 100%;
   border-radius: 5px;
-  box-sizing: border-box;
 }
 /* 菜的详情 */
 .menuContent {
@@ -317,14 +321,12 @@ div > .shop-wrapper {
   display: flex;
   flex-direction: column;
   line-height: 30px;
-  box-sizing: border-box;
   justify-content: space-between;
 }
 /* 菜名 */
 .menusName > .menuContent > h4 {
   margin: 0;
   color: #000;
-  box-sizing: border-box;
 }
 .menusName > .menuContent > span {
   font: 5px PingFang SC 微软雅黑;
@@ -341,7 +343,6 @@ div > .shop-wrapper {
   margin: 0;
   font-weight: bold;
   color: #e02e24;
-  box-sizing: border-box;
 }
 /* 添加按钮 */
 .menusName > span {
@@ -363,7 +364,7 @@ div > .shop-wrapper {
   content: "";
   background-color: #e02e24;
   width: 4px;
-  height: 30px;
+  height:10px;
   position: absolute;
   left: 0;
 }
