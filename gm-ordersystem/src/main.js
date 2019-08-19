@@ -18,6 +18,17 @@ import "mint-ui/lib/style.css"
 // 3:将mint-ui注册vue实例中
 Vue.use(MintUI)
 
+
+// //导入vue-amap
+import VueAMap from 'vue-amap';
+Vue.use(VueAMap);
+VueAMap.initAMapApiLoader({
+key: '74afb206381364fc1adcf847e7853aac',
+plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor','AMap.Geolocation',"AMap.Geocoder"],
+// 默认高德 sdk 版本为 1.4.4
+v: '1.4.15'
+});
+
 Vue.config.productionTip = false
 
 new Vue({
