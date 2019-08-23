@@ -8,6 +8,10 @@
       <span>图标</span>
       <p>社区</p>
     </router-link>
+    <router-link tag="li" to="/productlist">
+      <span>图标</span>
+      <p>菜单</p>
+    </router-link>
     <!-- 预留位给会员 to="member" -->
     <router-link tag="li" to="/helloworld">
       <span>图标</span>
