@@ -7,6 +7,7 @@
           <!-- 定位图标 -->
           <i class="iconfont icon-xinaixin" @click="goMaps"></i>
           <!-- 点位地址 -->
+          <weather class="myweather"></weather>
           <maps @changeLocation="changeLocation" style="display:none"></maps>
           <span>{{position}}</span>
         </li>
@@ -115,9 +116,11 @@
 </template>
 <script>
 import maps from './common/maps.vue'
+import weather from './common/weather'
 export default {
   data(){
     return{
+      mywidth:window.innerWidth,
       show:{
         showIn:true,
         showOut:false        
@@ -166,6 +169,7 @@ export default {
   },
   components:{
     maps,
+    weather,
   }
 }
 
@@ -260,6 +264,17 @@ export default {
   .order_index .top_user_msg  .top_user_others i{
     margin-left: 10px;
   }
+
+  /* 定位和天气 */
+  .order_index .weather{
+    position: absolute;
+    top: 5px;
+    width: 50%;
+  }
+   .order_index .weather .iframe-weather{
+     width: 100%;
+     padding: 20px;
+   }
   /* 第二层 轮播图样式 */
   .order_index .floor2 .ulCarousel{
     margin:10px 15px;
@@ -310,9 +325,9 @@ export default {
   }
   /* 底部优惠劵 */
   .order_index  .coupon{
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
+    position: fixed;
+    bottom: 100px;
+    right: 15px;
     z-index: 10;
     color: red;
   }
